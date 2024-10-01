@@ -1,0 +1,12 @@
+description.product:
+  path: '/product_description/{name}/{size}/{colour}'
+  defaults:
+    _controller: '\Drupal\description\Controller\MyController::productDescription'
+    _title: 'Product'
+    size: 'M'
+    colour: 'white'
+  requirements:
+    _permission: 'access content'
+
+
+    

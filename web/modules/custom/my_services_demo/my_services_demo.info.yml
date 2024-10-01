@@ -1,0 +1,6 @@
+name: 'My Services Demo'
+type: module
+description: 'A module to demonstrate using services.'
+core_version_requirement: ^10 || ^11
+package: Custom
+

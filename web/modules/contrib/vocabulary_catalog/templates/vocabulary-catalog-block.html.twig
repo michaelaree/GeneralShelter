@@ -1,0 +1,57 @@
+{#
+/**
+* @file
+*
+* Default template for calculator block.
+*
+* Available variables:
+* - content: Array of related details.
+*   {{ content.wrapper_class }}
+*   {{ content.vocabulary_listing_style }}
+*   {{ content.catalog_data }}
+*
+* @ingroup themeable
+*/
+#}
+<div class="vocabulary-catalog-wrapper">
+	{% if content.block_label != '' %}
+		<h2>{{ content.block_label }}</h2>
+	{% endif %}
+	{% set increment = 1 %}
+		{% set wrapper_class = content['wrapper_class'] %}
+			{% set listing_style = content['vocabulary_listing_style'] %}
+				{% if listing_style == '1' %}{% set layout = ') ' %}
+				{% elseif listing_style == '2' %}{% set layout = '. ' %}
+				{% elseif listing_style == '3' %}
+					{% set layout = ' ' %}
+					{% else %}{% set layout = '' %}
+					{% endif %}
+					{% if content['catalog_data']|length > 0 %}
+						{% for vocabulary_key,vocabulary in content['catalog_data'] %}
+							<div class="vocabulary-catalog{% if wrapper_class != '' %} {{ wrapper_class }}{% endif %}">
+								{% if listing_style != '' %}
+									{{ increment }}{{ layout }}
+								{% endif %}
+								{{ vocabulary.rendered}} ({{ vocabulary.count }})
+								{% macro menu_vocabulary(vocabulary, wrapper_class) %}
+									{% import _self as macros %}
+									<ul>
+										{% for link in vocabulary %}
+											<li>
+												{{ link.rendered}}. ({{ link.count }})
+												{% if link.children %}
+													<ul>
+														{{ macros.menu_vocabulary(link.children, wrapper_class) }}
+													</ul>
+												{% endif %}
+											</li>
+										{% endfor %}
+									</ul>
+								{% endmacro %}
+								{% import _self as macros %}
+								{{ macros.menu_vocabulary(vocabulary['terms_data'], wrapper_class) }}
+								{% set increment = increment + 1 %}
+								</div>
+							{% endfor %}
+						{% endif %}
+					</div>

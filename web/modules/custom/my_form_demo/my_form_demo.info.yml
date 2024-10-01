@@ -1,0 +1,7 @@
+name: 'My Form Demo'
+type: module
+description: 'A module to demonstrate a custom form for Christmas dinner subscription.'
+core_version_requirement: ^9 || ^10
+package: Custom
+dependencies:
+  - drupal:form

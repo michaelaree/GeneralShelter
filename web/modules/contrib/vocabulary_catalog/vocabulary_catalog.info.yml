@@ -1,0 +1,13 @@
+name: 'Vocabulary Catalog'
+type: module
+description: 'Display a list of terms with node count'
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+package: 'Vocabulary Catalog'
+dependencies:
+  - drupal:block
+
+# Information added by Drupal.org packaging script on 2023-05-27
+version: '1.2.2'
+project: 'vocabulary_catalog'
+datestamp: 1685199762

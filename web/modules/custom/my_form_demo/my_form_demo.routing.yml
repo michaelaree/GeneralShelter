@@ -1,0 +1,34 @@
+my_form_demo.colour_form:
+  path: '/colour-form'
+  defaults:
+    _form: '\Drupal\my_form_demo\Form\ColourForm'
+    _title: 'Favourite Colour'
+  requirements:
+    _permission: 'access content'
+
+my_form_demo.colour_page:
+  path: '/colour/{favourite_colour}'
+  defaults:
+    _controller: '\Drupal\my_form_demo\Controller\ColourController::colourPage'
+    _title: 'Your Favourite Colour'
+  requirements:
+    _permission: 'access content'
+my_form_demo.demo_element_form:
+  path: '/demo-element-form'
+  defaults:
+    _form: '\Drupal\my_form_demo\Form\DemoElementForm'
+    _title: 'Demo Element Form'
+  requirements:
+    _permission: 'access content'
+
+
+my_form_demo.christmas_dinner_form:
+  path: '/christmas-dinner-form'
+  defaults:
+    _form: '\Drupal\my_form_demo\Form\ChristmasDinnerForm'
+    _title: 'Christmas Dinner Subscription Form'
+  requirements:
+    _permission: 'access content'
+
+
+

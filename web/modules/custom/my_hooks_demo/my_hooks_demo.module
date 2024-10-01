@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * Contains the hook implementations for the My Hooks Demo module.
+ */
+
+/**
+ * Implements hook_user_login().
+ *
+ * Displays a message when a user logs in.
+ *
+ * @param \Drupal\Core\Session\AccountInterface $account
+ *   The user account object of the logged-in user.
+ */
+function my_hooks_demo_user_login(\Drupal\Core\Session\AccountInterface $account) {
+  // Show a message to the user upon login using the new messenger service.
+  \Drupal::messenger()->addMessage(t('Hello @username, welcome back!', ['@username' => $account->getDisplayName()]));
+}
+
+/**
+ * Implements hook_cache_flush().
+ *
+ * Displays a message when caches are flushed.
+ */
+function my_hooks_demo_cache_flush() {
+  // Show a message when cache is flushed using the new messenger service.
+  \Drupal::messenger()->addMessage(t('You flushed the cache!'));
+}
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function my_hooks_demo_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Display a message on every form.
+  \Drupal::messenger()->addMessage(t('Altered form with id: @id', ['@id' => $form_id]));
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for 'node_article_form'.
+ */
+function my_hooks_demo_form_node_article_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Display a message on the article creation form.
+  \Drupal::messenger()->addMessage(t('Altered the Article form'));
+
+  // Change the description of the title field.
+  if (isset($form['title'])) {
+    $form['title']['widget'][0]['value']['#description'] = t('Please enter a unique and descriptive title for your article.');
+  }
+}

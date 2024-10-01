@@ -1,0 +1,4 @@
+access addition page:
+  title: 'Access addition page'
+  description: 'Allow users to access the addition page.'
+  restrict access: TRUE
